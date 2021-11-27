@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Cache Poetry
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: ~/.virtualenvs
+          key: poetry-${{ hashFiles('**/poetry.lock') }}
+      - name: Setup environment
+        run: |
+          pip install poetry
+          poetry config virtualenvs.in-project false
+          poetry config virtualenvs.path ~/.virtualenvs
+      - name: Install dependencies
+        run: poetry install
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Lint
+        run: |
+          poetry run mypy pylicy/ tests/
+          poetry run flake8 pylicy/ tests/
+          poetry run black --check pylicy/ tests/
+          poetry run isort --check-only pylicy/ tests/
+      - name: Test
+        run: poetry run pytest --cov-report term-missing --cov=pylicy tests/

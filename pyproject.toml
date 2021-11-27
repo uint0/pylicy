@@ -1,0 +1,38 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 108
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
+
+[tool.poetry]
+name = "pylicy"
+version = "0.1.1"
+description = "Extensible and customizable policy definition and enforcement framework"
+authors = ["uint0 <i@uint0.dev>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/uint0/pylicy"
+repository = "https://github.com/uint0/pylicy"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^1.8.2"
+PyYAML = "^6.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+black = "^21.11b1"
+isort = "^5.10.1"
+mypy = "^0.910"
+hypothesis = "^6.27.1"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+types-PyYAML = "^6.0.1"
+pytest-asyncio = "^0.16.0"
