@@ -1,0 +1,21 @@
+site_name: Pylicy
+site_description: ''
+site_url: https://pylicy.uint0.dev/
+
+repo_name: uint0/pylicy
+repo_url: https://github.com/uint0/pylicy
+strict: true
+plugins:
+ - search
+
+theme:
+  name: 'material'
+
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+

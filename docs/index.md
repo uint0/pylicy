@@ -1,25 +1,24 @@
-# Pylicy
+# Welcome to Pylicy
 
-An customizable and extensible policy creation and enforcement framework.
+Pylicy is an customizable and extensible policy creation and enforcement framework written in python.
 
-[Documentation](https://pylicy.uint0.dev/getting-started/)
+Pylicy aims to allow users to define policies in code, describe policy application rules in configuration, and handle policy application within the framework.
+
 
 ## Installation
 
-```
+```shell
 $ pip install pylicy
 ```
 
 ## A Simple Example
-
-Examples can be found in the `examples/` directory.
 
 ```python
 import asyncio
 import pylicy
 
 @pylicy.policy_checker('token_age_policy')
-async def my_policy(resource: pylicy.Resource, rule: pylicy.Rule) -> pylicy.PolicyDecision:
+async def my_policy(resource: pylicy.Resource, rule: pylicy.Rule):
     if resource.data['token_age'] > 30:
         return pylicy.PolicyDecision(
             action=pylicy.PolicyDecisionAction.DENY,
@@ -37,7 +36,7 @@ policies = pylicy.Pylicy.from_rules([
         resources=['*_token*'],
         policies=['token_*'],
     )
-])
+])  # or pylicy.Pylicy.from_yaml("/path/to/rules.yml")
 
 results = asyncio.run(policies.apply_all([
     pylicy.Resource(id='my_ok_token', data={'token_age': 10}),
@@ -49,4 +48,5 @@ print(results)
 ```
 
 ## License
+
 This project is licensed under the terms of the MIT license.

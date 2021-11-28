@@ -1,0 +1,20 @@
+version: 1
+
+rules:
+  - name: enforce_all
+    description: Enforce all policies for all resources
+    weight: 1
+    resources: '*'
+    policies: '*'
+  - name: allow_admin_wildcards
+    description: Allow admins to have wildcards
+    resources: admin_*
+    policies:
+      - '!token_no_wildcard'
+  - name: frank_extend_time
+    description: Frank can have longer times betwen token rotation
+    resources: frank_*
+    policies:
+      - token_age
+    context:
+      max_rotation_time: 365

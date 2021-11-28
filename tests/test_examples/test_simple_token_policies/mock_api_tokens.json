@@ -1,0 +1,50 @@
+[
+    {
+        "name": "alice_token",
+        "token": {
+            "token": "alice_everything_good",
+            "scopes": ["pets:list", "pets:read"],
+            "rotated_at": "2021-11-15 00:00"
+        }
+    },
+    {
+        "name": "bob_token",
+        "token": {
+            "token": "bob_has_wildcard",
+            "scopes": ["*"],
+            "rotated_at": "2021-11-15 00:00"
+        }
+    },
+    {
+        "name": "david_token",
+        "token": {
+            "token": "david_too_long_since_rotation",
+            "scopes": ["pets:read"],
+            "rotated_at": "2021-06-01 00:00"
+        }
+    },
+    {
+        "name": "eve_token",
+        "token": {
+            "token": "eve_doing_everything_wrong",
+            "scopes": ["pets:*"],
+            "rotated_at": "2021-05-01 00:00"
+        }
+    },
+    {
+        "name": "frank_token",
+        "token": {
+            "token": "frank_has_a_longer_rotated_limit",
+            "scopes": ["pets:read"],
+            "rotated_at": "2021-06-01 00:00"
+        }
+    },
+    {
+        "name": "admin_pets_token",
+        "token": {
+            "token": "admin_for_pets_can_have_wildcards",
+            "scopes": ["pets:*"],
+            "rotated_at": "2021-05-01 00:00"
+        }
+    }
+]

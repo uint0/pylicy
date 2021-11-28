@@ -1,0 +1,14 @@
+version: 1
+
+rules:
+  - name: token_rotation_all
+    description: Enforce the token rotation policy for all resources
+    resources: '*'
+    policies: token_rotation
+  - name: special_longlived_tokens
+    description: Exclude certain tokens from this rule
+    resources:
+     - longlived_*
+     - alices_token
+    policies: '!token_rotation'
+
